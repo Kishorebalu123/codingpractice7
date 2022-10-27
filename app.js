@@ -108,7 +108,7 @@ app.get("/players/:playerId/playerScores", async (request, response) => {
     SELECT player_id AS playerId,
     player_name AS playerName,
     SUM(score) AS totalScore,SUM(fours) AS totalFours,SUM(sixes) AS totalSixes FROM player_match_score NATURAL JOIN player_details 
-    WHERE player_id=${playerId};`;
+    WHERE player_id=${playerId}`;
   const playerStats = await database.get(getPlayersStatisticsQuery);
   response.send(playerStats);
 });
