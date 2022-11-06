@@ -99,7 +99,7 @@ app.get("/matches/:matchId/players", async (request, response) => {
     SELECT * from player_match_score NATURAL JOIN player_details
     WHERE match_id=${matchId}`;
   const players = await database.all(getPlayersQuery);
-  response.send(players);
+  response.send(players.map((each)=>convertPlayerObjectToResponseObject(each)));
 });
 
 app.get("/players/:playerId/playerScores", async (request, response) => {
